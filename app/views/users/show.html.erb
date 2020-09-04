@@ -9,14 +9,14 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-<textarea>
+<p>
   <strong>Content:</strong>
   <% @user.microposts.each do |post| %>
     <br/>
     <%= post.id%>
     <%= post.content%>
   <% end %>
-</textarea>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
