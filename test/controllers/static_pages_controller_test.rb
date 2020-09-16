@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
@@ -5,7 +7,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     get static_pages_home_url
     assert_response :success
     assert_select 'title', 'Home | Ruby on Rails Tutorial Sample App'
-
   end
 
   test 'should get help' do
