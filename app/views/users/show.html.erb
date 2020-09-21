@@ -2,25 +2,28 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <%= gravatar_for @user %>
-  <br>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-<p>
-  <strong>Content:</strong>
-  <% @user.microposts.each do |post| %>
-  <br />
-  <%= post.id%>
-  <%= post.content%>
-  <% end %>
-</p>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <p>
+        <strong>Email:</strong>
+        <%= @user.email %>
+      </p>
+      <p>
+        <strong>Content:</strong>
+        <% @user.microposts.each do |post| %>
+        <br />
+        <%= post.id%>
+        <%= post.content%>
+        <% end %>
+      </p>
+    </section>
+  </aside>
+</div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
