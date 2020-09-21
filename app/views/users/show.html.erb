@@ -1,6 +1,10 @@
+<% provide(:title,@user.name)%>
+
 <p id="notice"><%= notice %></p>
 
 <p>
+  <%= gravatar_for @user %>
+  <br>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
@@ -12,9 +16,9 @@
 <p>
   <strong>Content:</strong>
   <% @user.microposts.each do |post| %>
-    <br/>
-    <%= post.id%>
-    <%= post.content%>
+  <br />
+  <%= post.id%>
+  <%= post.content%>
   <% end %>
 </p>
 
