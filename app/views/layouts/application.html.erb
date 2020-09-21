@@ -14,12 +14,13 @@
   <%= render 'layouts/header' %>
   <div class="container">
     <%= link_to image_tag("rails.svg", alt: "Rails logo", width: "200"),"/" %>
-    <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+    <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary", id: "sign_up_btn" %>
   </div>
 
   <div class="container">
     <%= yield %>
     <%= render 'layouts/footer'  %>
+    <%= debug(params) if Rails.env.development? %>
   </div>
 
 </body>

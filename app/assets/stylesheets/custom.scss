@@ -1,6 +1,27 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+#sign_up_btn {
+  float: right;
+  &:visited {
+    color: white;
+  }
+}
+
 body {
   padding-top: 60px;
 }
@@ -53,4 +74,3 @@ footer {
     margin-left: 15px;
   }
 }
-
