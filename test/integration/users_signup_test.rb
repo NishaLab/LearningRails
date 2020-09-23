@@ -9,7 +9,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: { user: { name: '',
                                          email: 'user@invalid',
                                          password: 'foo',
-                                         password_confirmation: 'bar' } }
+                                         password_confirmation: 'bar' }}
     end
     assert_template 'users/new'
     assert_select 'div#error_explanation'
@@ -22,7 +22,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: { user: { name: 'test',
                                          email: 'hungtest@gmail.com',
                                          password: 'Hung123456',
-                                         password_confirmation: 'Hung123456' } }
+                                         password_confirmation: 'Hung123456' }}
     end
     follow_redirect!
     assert_template 'users/show'
