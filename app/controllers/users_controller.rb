@@ -2,7 +2,8 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-
+  before_action :logged_in_user, only: %i[index show edit update]
+  before_action :correct_user, only: %i[edit update]
   # GET /users
   # GET /users.json
   def index
@@ -65,6 +66,19 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = 'Please log in.'
+      store_location
+    end
+    return redirect_to login_url unless logged_in?
+  end
+
+  def correct_user
+    @user = User.find_by(id: params[:id])
+    redirect_to login_url unless current_user?(@user)
   end
 
   # Only allow a list of trusted parameters through.
