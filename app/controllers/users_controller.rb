@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :logged_in_user, only: %i[index show edit update]
   before_action :correct_user, only: %i[edit update]
+  before_action :admin_user, only: %i[destroy]
+
   # GET /users
   # GET /users.json
   def index
@@ -54,11 +56,9 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    User.find_by(id: params[:id]).destroy
+    flash.now[:succes] = 'User was succesfully deleted'
+    redirect_to users_url
   end
 
   private
@@ -84,5 +84,9 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 end
